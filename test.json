@@ -1,0 +1,26 @@
+{
+    "message_id": "random-hash-code",
+    "device_id": "eenmalige-hash-code-vanuit-de-backend",
+    "device_status": "active | inactive",
+    "date": "systeem-datum-en-tijd",
+    "devices": [
+         { 
+              "serial_number":  "serie-nummer",
+              "device_type": "solar | pump | ...",
+              "device_status": "active | inactive",
+              "device_total_yield": "totaal-aantal-KwH-opbrengst",
+              "device_month_yield": "totaal-aantal-KwH-actieve-maand",
+              "device_total_surpuls": "totaal-aantal-KwH-overschot",
+              "device_month_surplus": "overschot-KwH-actieve-maand"
+         },
+         {
+              "serial_number":  "serie-nummer",
+              "device_type": "solar | pump | ...",
+              "device_status": "active | inactive",
+              "device_total_yield": "totaal-aantal-KwH-opbrengst",
+              "device_month_yield": "totaal-aantal-KwH-actieve-maand",
+              "device_total_surpuls": "totaal-aantal-KwH-overschot",
+              "device_month_surplus": "overschot-KwH-actieve-maand"
+         }      
+    ]
+}
