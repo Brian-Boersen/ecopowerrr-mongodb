@@ -31,25 +31,42 @@ let idUrl = "/:id";
 
 //delete--------------------------------------------------------------------------------------------------------
 
-app.delete(coursesUrl+idUrl, (req, res) => {
-    let searchId = parseInt(req.params.id);
-    res.send({id: searchId, deleted: true});
-});
+// app.delete(coursesUrl+idUrl, (req, res) => {
+//     let searchId = parseInt(req.params.id);
+//     res.send({id: searchId, deleted: true});
+// });
 
-//put--------------------------------------------------------------------------------------------------------
+// //put--------------------------------------------------------------------------------------------------------
 
-app.put(coursesUrl+idUrl, (req, res) => {
-    let searchId = parseInt(req.params.id);
-    res.send({id: searchId, received: req.body});
-});
+// app.put(coursesUrl+idUrl, (req, res) => {
+//     let searchId = parseInt(req.params.id);
+//     res.send({id: searchId, received: req.body});
+// });
 
 //Post--------------------------------------------------------------------------------------------------------
 
-app.get('/fetch_data', (request, response) => {
+app.get('/fetch_data/:id', (request, response) =>
+{
+    Mongo.fetch('solar-data',request.params.id)
+    .then(result => response.send(result))
+    .catch(err => response.send(err))
+});
+
+app.get('/fetch_data', (request, response) =>
+{
     Mongo.fetch('solar-data')
     .then(result => response.send(result))
     .catch(err => response.send(err))
-})
+});
+
+
+app.get('/setstatus/:status', (request, response) => 
+{
+    Mongo.setStatus('solar-data', request.params.status)
+    .then(result => response.send(result))
+    .catch(err => response.send(err))
+    //response.send({status: request.params.status});
+});
 
 //get--------------------------------------------------------------------------------------------------------
 
@@ -68,19 +85,3 @@ app.get("/", (request, response) => {
     
     //response.send({page:"Homepage"});
 });
-
-app.get("/courses", (rec, res) => {
-    res.send(courses);
-});
-
-app.get("/courses/:id", (rec, res) => {
-    let searchId = parseInt(rec.params.id);
-    let result = courses.filter( course => course.id === searchId);
-
-    if(result.length === 0) {
-        res.status(404).send("The course with the given ID was not found");
-        return;
-    }
-    res.send(result[0]);
-});
-
