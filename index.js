@@ -52,6 +52,13 @@ app.get('/fetch_data/:id', (request, response) =>
     .catch(err => response.send(err))
 });
 
+app.get('/fetch_data/x/:id', (request, response) =>
+{
+    Mongo.specialFetch('solar-data',request.params.id)
+    .then(result => response.send(result))
+    .catch(err => response.send(err))
+});
+
 app.get('/fetch_data', (request, response) =>
 {
     Mongo.fetch('solar-data')
@@ -67,6 +74,7 @@ app.get('/setstatus/:status', (request, response) =>
     .catch(err => response.send(err))
     //response.send({status: request.params.status});
 });
+
 
 //get--------------------------------------------------------------------------------------------------------
 
